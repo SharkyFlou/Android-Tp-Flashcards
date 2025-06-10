@@ -20,11 +20,16 @@ class FlashcardViewModel : ViewModel() {
         val state = _uiState.value
         //si pas dernière carte
         if (state.currentIndex < state.cards.lastIndex) {
-            //on avance la carte
-            _uiState.value = state.copy(currentIndex = state.currentIndex + 1)
+            //on avance la carte et on la remet dans le bon sens
+            _uiState.value = state.copy(currentIndex = state.currentIndex + 1, isCardFlipped = false)
         } else {
-            //on indique que c'est fnit
+            //on indique si c'est fnit
             _uiState.value = state.copy(isFinished = true)
         }
+    }
+
+    fun flipCard(){
+        //on retourne la carte
+        _uiState.value = _uiState.value.copy(isCardFlipped = !_uiState.value.isCardFlipped)
     }
 }

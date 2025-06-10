@@ -15,5 +15,6 @@ data class FlashCardCategory(
 data class FlashcardUiState(
     val currentIndex: Int = 0,
     val cards: List<FlashCard> = emptyList(),
-    val isFinished: Boolean = false
+    val isFinished: Boolean = false,
+    val isCardFlipped: Boolean = false
 )
