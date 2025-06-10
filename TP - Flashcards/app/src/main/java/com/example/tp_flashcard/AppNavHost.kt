@@ -46,13 +46,22 @@ fun FlashcardNavHost(
         composable("home") {
             HomeScreen(
                 homeViewModel = homeViewModel,
-                onCategoryClick = {  }
+                onCategoryClick = { category ->
+                    flashcardViewModel.loadCardsForCategory(category.id)
+                    navController.navigate("flashcard"){
+                        popUpTo("home") { inclusive = true }
+                    }
+                }
             )
         }
         composable("flashcard") {
             FlashcardScreen(
                 flashcardViewModel = flashcardViewModel,
-                onSessionFinished = {  }
+                onSessionFinished = {
+                    navController.navigate("home") {
+                        popUpTo("home") { inclusive = true }
+                    }
+                }
             )
         }
     }
